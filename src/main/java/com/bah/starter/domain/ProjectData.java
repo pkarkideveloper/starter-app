@@ -2,24 +2,40 @@ package com.bah.starter.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class ProjectData {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue( strategy= GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message="project name is required")
 	private String projectName;
+	@NotBlank (message ="Project identifier is required")
+	@Size(min =4, max =5, message ="Field length need to be between 4 and 5")
+    @Column(updatable =false, unique = true)
 	private String projectIdentifier;
+	@NotBlank(message ="Project description is required")
 	private String description;
+	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date startDate;
+	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date targetDate;
+	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date createDate;
+	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date updatedDate;
 
 	public Long getId() {
@@ -38,11 +54,11 @@ public class ProjectData {
 		this.projectName = projectName;
 	}
 
-	public String getProjectIndentifier() {
+	public String getProjectIdentifier() {
 		return projectIdentifier;
 	}
 
-	public void setProjectIndentifier(String projectIndentifier) {
+	public void setProjectIdentifier(String projectIndentifier) {
 		this.projectIdentifier = projectIndentifier;
 	}
 
