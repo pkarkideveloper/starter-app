@@ -11,8 +11,14 @@ import com.bah.starter.domain.ProjectData;
 @Repository
 public interface ProjectRepository extends CrudRepository<ProjectData, Long> {
 
-	List<ProjectData> findAllById (Long Id);
-	//@Override
-	//Iterable<ProjectData> findAllById(Iterable<Long> iterable);
+
+	// @Override
+	// Iterable<ProjectData> findAllById(Iterable<Long> iterable);
+	ProjectData findByProjectIdentifier(String projectIdentifier);
+
+	@Override
+	Iterable<ProjectData> findAll();
+	
+	
 
 }
