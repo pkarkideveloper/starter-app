@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 
  class AddProject extends Component {
+     constructor(){
+         super();
+         this.state ={
+             "projectName":"react project",
+              "projectIdentifier":"ReactJs",
+              "description":"desc",
+              "startDate":"2021-03-01",
+              "targetDate":"2021-07-23"
+         }
+     }
     render() {
         return (
             <div className="project">
